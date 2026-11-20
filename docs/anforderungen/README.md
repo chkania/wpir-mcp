@@ -22,6 +22,7 @@ Zweck, Benutzer, Grundentscheidungen und Abgrenzung stehen in der [Produktbeschr
 | [F1](F1-mcp-endpunkt.md) | MCP-Endpunkt |
 | [F2](F2-wissensbasis.md) | Wissensbasis |
 | [F3](F3-werkzeuge.md) | Werkzeuge |
+| [F4](F4-startseite.md) | Startseite |
 
 ## Nicht-funktionale Anforderungen
 

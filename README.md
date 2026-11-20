@@ -50,4 +50,4 @@ Die Wissensbasis liegt unter `src/data/` (eine Datei je Thema). Jeder Fakt brauc
 
 ## Lizenz
 
-PolyForm Noncommercial 1.0.0, siehe [LICENSE.md](LICENSE.md).
+PolyForm Noncommercial 1.0.0, siehe [LICENSE.md](LICENSE.md). Die Schriften Inter und JetBrains Mono unter `public/fonts/` stehen unter der SIL Open Font License 1.1 (Lizenztexte daneben).
