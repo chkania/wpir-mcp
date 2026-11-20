@@ -1,7 +1,7 @@
 import type { ServerResponse } from 'node:http';
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('../src/server.js', () => ({
+vi.mock('../src/mcp-server.js', () => ({
   createServer: () => {
     throw new Error('geheimer interner Fehler mit Details');
   },

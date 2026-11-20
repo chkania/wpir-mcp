@@ -21,7 +21,7 @@ Belege jeden Befund mit einem konkreten Szenario (Eingabe/Anfrage → falsches E
 - **Korrekt:** Jedes Akzeptanzkriterium ist umgesetzt; Abfragen liefern bei Grenzfällen das Richtige (leere Filter, unbekannter Feldpfad, Typen beim Vergleich); Fakten stimmen mit ihren Quellen überein und tragen Quelle, Prüfdatum und Status; Tests prüfen das Verhalten wirklich (rechne einen Erwartungswert nach).
 - **Sicher:** Der Server bleibt nur lesend, öffentlich und zustandslos; keine Nutzerdaten, keine Secrets, keine Ausgabe interner Fehlerdetails; Eingaben der Werkzeuge sind mit `zod` begrenzt.
 - **Schnittstelle:** Werkzeugnamen, Eingaben und Ausgabeformat bleiben abwärtskompatibel oder die Änderung ist ausdrücklich genannt (der Rechner-Agent im Repo wpir hängt daran).
-- **Sinnvoll:** passt zur Struktur in `CLAUDE.md` (Daten in `src/data`, reine Abfragen in `src/queries.ts`, Server in `src/server.ts`); keine Duplikate vorhandener Helfer; Namen und Kommentare englisch, Texte für Nutzer deutsch.
+- **Sinnvoll:** passt zur Struktur in `CLAUDE.md` (Daten in `src/data`, reine Abfragen in `src/queries.ts`, Server in `src/mcp-server.ts`); keine Duplikate vorhandener Helfer; Namen und Kommentare englisch, Texte für Nutzer deutsch.
 
 ## Rückgabe
 

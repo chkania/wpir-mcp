@@ -10,10 +10,15 @@ MCP-Server (Streamable HTTP, zustandslos, nur lesend) auf Vercel mit Förderprog
 
 ## Struktur
 - `api/mcp.ts` – Vercel-Funktion, ein Server je Anfrage (`vercel.json` leitet `/mcp` dorthin).
-- `src/server.ts` – Werkzeuge (`list_topics`, `get_facts`, `list_sources`, `list_keys`, `check_value`); `src/queries.ts` – reine Abfragen ohne MCP; `src/facts.ts` – Datenmodell mit `zod`.
+- `src/mcp-server.ts` – Werkzeuge (`list_topics`, `get_facts`, `list_sources`, `list_keys`, `check_value`); `src/queries.ts` – reine Abfragen ohne MCP; `src/facts.ts` – Datenmodell mit `zod`.
 - `src/data/` – die Wissensbasis, eine Datei je Thema, gemeinsame Quellen in `sources.ts`. Neues Thema → Datei, Eintrag in `src/data/index.ts` und in `TOPICS` (`src/facts.ts`).
 - `scripts/local-server.ts` – `npm run dev` (http://localhost:3000/mcp).
 - `tests/` – Vitest; `server.test.ts` (SDK-Client), `http.test.ts` (echter Endpunkt), `data.test.ts` (Datenqualität).
+
+## Vercel-Besonderheiten
+- **TypeScript bleibt bei 5.9** (`~5.9.3`): Der Vercel-Builder liest `ts.sys`, das es in TypeScript 7 nicht gibt; mit 7 bricht der Build ab.
+- **Dateinamen:** Keine Datei `src/server.ts`, `src/index.ts`, `server.ts` o. Ä. anlegen – Vercel hält sie für den Einstiegspunkt einer Server-App und wählt den falschen Builder (deshalb heißt die Datei `src/mcp-server.ts`, zusätzlich `"framework": null` in `vercel.json`).
+- **Imports** relativ mit Endung `.js` (Node-ESM; der Typecheck mit `NodeNext` erzwingt das).
 
 ## Daten pflegen
 Jeder Fakt braucht Quelle (URL, Lesedatum), Prüfdatum und Status; Referenzwerte tragen den Feldpfad des Rechners (`funding.grundRate`), Prozent als Anteil, Monate „JJJJ-MM“. Nichts ohne Quelle eintragen, Unsicheres als `note`. Preise und Marktdaten gehören nicht hinein.
