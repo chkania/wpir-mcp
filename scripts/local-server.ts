@@ -2,7 +2,7 @@
  * Local MCP endpoint for development: `npm run dev` → http://localhost:3000/mcp (same handler as on Vercel).
  */
 import { createServer } from 'node:http';
-import handler from '../api/mcp';
+import handler from '../api/mcp.js';
 
 const port = Number(process.env.PORT ?? 3000);
 

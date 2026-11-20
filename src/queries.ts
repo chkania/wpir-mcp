@@ -1,4 +1,4 @@
-import type { Fact, RefValue, Topic } from './facts';
+import type { Fact, RefValue, Topic } from './facts.js';
 
 export interface TopicSummary {
   topic: Topic;

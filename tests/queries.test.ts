@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { FACTS } from '../src/data';
-import { checkValue, findFacts, knownKeys, listSources, listTopics } from '../src/queries';
+import { FACTS } from '../src/data/index.js';
+import { checkValue, findFacts, knownKeys, listSources, listTopics } from '../src/queries.js';
 
 describe('Abfragen', () => {
   it('Themen mit Anzahl und ältestem Prüfdatum', () => {

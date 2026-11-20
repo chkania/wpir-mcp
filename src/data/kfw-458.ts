@@ -1,5 +1,5 @@
-import { defineFacts } from '../facts';
-import { BEG_EM_RICHTLINIE, KFW_458_INFOBLATT, KFW_458_MERKBLATT } from './sources';
+import { defineFacts } from '../facts.js';
+import { BEG_EM_RICHTLINIE, KFW_458_INFOBLATT, KFW_458_MERKBLATT } from './sources.js';
 
 /** KfW 458 (Heizungsförderung für Privatpersonen). Reference values are the ones the calculator (wpir) uses. */
 export const kfw458 = defineFacts([

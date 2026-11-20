@@ -1,5 +1,5 @@
-import { defineFacts } from '../facts';
-import { BEG_EM_RICHTLINIE, KFW_358_359_MERKBLATT, KFW_358_359_SEITE } from './sources';
+import { defineFacts } from '../facts.js';
+import { BEG_EM_RICHTLINIE, KFW_358_359_MERKBLATT, KFW_358_359_SEITE } from './sources.js';
 
 /** KfW 358/359 (Ergänzungskredit). */
 export const kfw358359 = defineFacts([

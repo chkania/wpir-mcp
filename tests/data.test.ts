@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { FACTS } from '../src/data';
-import { defineFacts, TOPICS } from '../src/facts';
+import { FACTS } from '../src/data/index.js';
+import { defineFacts, TOPICS } from '../src/facts.js';
 
 describe('Wissensbasis: Qualität der Daten', () => {
   it('Fakt-IDs sind eindeutig', () => {

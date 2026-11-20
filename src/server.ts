@@ -1,8 +1,8 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
-import { FACTS } from './data';
-import { TOPICS, type Fact } from './facts';
-import { checkValue, findFacts, knownKeys, listSources, listTopics } from './queries';
+import { FACTS } from './data/index.js';
+import { TOPICS, type Fact } from './facts.js';
+import { checkValue, findFacts, knownKeys, listSources, listTopics } from './queries.js';
 
 export const SERVER_NAME = 'wpir-mcp';
 export const SERVER_VERSION = '0.1.0';

@@ -1,7 +1,7 @@
 import { createServer, type Server } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import handler from '../api/mcp';
+import handler from '../api/mcp.js';
 
 // The real Vercel handler behind a local HTTP server: what an agent in another repo talks to.
 let http: Server;

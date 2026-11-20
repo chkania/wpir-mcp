@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import { createServer } from '../src/server';
+import { createServer } from '../src/server.js';
 
 /** Request as Vercel passes it: Node request with the body already parsed. */
 type VercelLikeRequest = IncomingMessage & { body?: unknown };

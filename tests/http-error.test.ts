@@ -1,13 +1,13 @@
 import type { ServerResponse } from 'node:http';
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('../src/server', () => ({
+vi.mock('../src/server.js', () => ({
   createServer: () => {
     throw new Error('geheimer interner Fehler mit Details');
   },
 }));
 
-const { default: handler } = await import('../api/mcp');
+const { default: handler } = await import('../api/mcp.js');
 
 function fakeResponse() {
   const res = { headersSent: false, status: 0, headers: {} as Record<string, unknown>, body: '' };

@@ -1,5 +1,5 @@
-import { defineFacts } from '../facts';
-import { BEG_EM_RICHTLINIE, ESTG_35C, ESTG_52 } from './sources';
+import { defineFacts } from '../facts.js';
+import { BEG_EM_RICHTLINIE, ESTG_35C, ESTG_52 } from './sources.js';
 
 /** Steuerermäßigung für energetische Maßnahmen an selbstgenutzten Wohngebäuden. */
 export const steuer35c = defineFacts([

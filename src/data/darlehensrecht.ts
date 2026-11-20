@@ -1,5 +1,5 @@
-import { defineFacts } from '../facts';
-import { BGB_500, BGB_502 } from './sources';
+import { defineFacts } from '../facts.js';
+import { BGB_500, BGB_502 } from './sources.js';
 
 /** Vorfälligkeitsentschädigung bei Verbraucherdarlehen. */
 export const darlehensrecht = defineFacts([

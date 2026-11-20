@@ -1,5 +1,5 @@
 /** Shared sources of the facts, so that URLs and labels are written down once. */
-import type { FactInput } from '../facts';
+import type { FactInput } from '../facts.js';
 
 type Source = FactInput['sources'][number];
 
