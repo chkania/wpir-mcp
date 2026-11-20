@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { FACTS } from '../src/data/index.js';
-import { checkValue, findFacts, knownKeys, listSources, listTopics } from '../src/queries.js';
+import { checkValue, findFacts, knownKeys, listSources, listTopics, readAsReference } from '../src/queries.js';
 
 describe('Abfragen', () => {
   it('Themen mit Anzahl und ältestem Prüfdatum', () => {
@@ -44,6 +44,34 @@ describe('Abfragen', () => {
     expect(checkValue(FACTS, 'tax.deadline', '2030-12').status).toBe('abweichend');
     expect(checkValue(FACTS, 'tax.deadline', 2029).status).toBe('abweichend'); // other type is not equal
     expect(checkValue(FACTS, 'gibt.es.nicht', 1)).toEqual({ key: 'gibt.es.nicht', status: 'unbekannt', yours: 1 });
+  });
+
+  it('F3.5 Zahlen und Wahrheitswerte als Text werden wie die Werte gelesen', () => {
+    const num = checkValue(FACTS, 'funding.grundRate', '0.3');
+    expect(num).toMatchObject({ status: 'gleich', yours: '0.3', interpretedAs: 0.3, reference: 0.3 });
+    expect(checkValue(FACTS, 'financing.kfwMinPrepay', ' 5000 ')).toMatchObject({ status: 'gleich', interpretedAs: 5000 });
+    expect(checkValue(FACTS, 'tax.maxBonus', '1e4')).toMatchObject({ status: 'abweichend', interpretedAs: 10000 });
+    // a real number needs no reading
+    expect(checkValue(FACTS, 'funding.grundRate', 0.3)).not.toHaveProperty('interpretedAs');
+    // text that is no number: no reading, stays different
+    for (const bad of ['', '  ', 'abc', '0,3', '0.3 €', 'NaN', 'Infinity']) {
+      const r = checkValue(FACTS, 'funding.grundRate', bad);
+      expect(r.status, bad).toBe('abweichend');
+      expect(r, bad).not.toHaveProperty('interpretedAs');
+    }
+    // text references are compared as text, also if the value looks like a number
+    expect(checkValue(FACTS, 'tax.deadline', '2029-12')).toMatchObject({ status: 'gleich' });
+    expect(checkValue(FACTS, 'tax.deadline', '2029-12')).not.toHaveProperty('interpretedAs');
+  });
+
+  it('F3.5 readAsReference liest nur Text bei Zahl- oder Wahrheitswert-Referenz', () => {
+    expect(readAsReference('0.5', 1)).toBe(0.5);
+    expect(readAsReference('TRUE', true)).toBe(true);
+    expect(readAsReference(' false ', false)).toBe(false);
+    expect(readAsReference('ja', true)).toBeUndefined();
+    expect(readAsReference('0.5', 'text')).toBeUndefined();
+    expect(readAsReference(0.5, 1)).toBeUndefined();
+    expect(readAsReference(true, false)).toBeUndefined();
   });
 
   it('bekannte Feldpfade sortiert, ohne Doppelte', () => {

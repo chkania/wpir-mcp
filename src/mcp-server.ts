@@ -73,7 +73,7 @@ export function createServer(facts: readonly Fact[] = FACTS): McpServer {
     {
       title: 'Wert prüfen',
       description:
-        'Vergleicht einen Wert des Rechners mit dem Referenzwert der Wissensbasis. Antwort: status "gleich", "abweichend" oder "unbekannt" (Feldpfad nicht bekannt) sowie Referenzwert, Fakt, Prüfdatum und Quellen. Prozentwerte als Anteil (0.3), Monate als "JJJJ-MM".',
+        'Vergleicht einen Wert des Rechners mit dem Referenzwert der Wissensbasis. Antwort: status "gleich", "abweichend" oder "unbekannt" (Feldpfad nicht bekannt) sowie Referenzwert, Fakt, Prüfdatum und Quellen. Prozentwerte als Anteil (0.3), Monate als "JJJJ-MM". Zahlen und Wahrheitswerte, die als Text ankommen ("0.3", "true"), werden wie die Zahl bzw. der Wahrheitswert gelesen (Antwort: interpretedAs).',
       inputSchema: {
         key: z.string().min(1).describe('Feldpfad des Rechners, z. B. "funding.grundRate"'),
         value: z.union([z.number(), z.string(), z.boolean()]).describe('Aktueller Wert im Rechner'),

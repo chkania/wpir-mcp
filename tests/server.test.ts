@@ -39,6 +39,7 @@ describe('MCP-Server (Werkzeuge)', () => {
     const client = await connect();
     expect(json(await client.callTool({ name: 'check_value', arguments: { key: 'tax.maxBonus', value: 40000 } })).status).toBe('gleich');
     expect(json(await client.callTool({ name: 'check_value', arguments: { key: 'tax.maxBonus', value: 30000 } })).status).toBe('abweichend');
+    expect(json(await client.callTool({ name: 'check_value', arguments: { key: 'tax.maxBonus', value: '40000' } }))).toMatchObject({ status: 'gleich', interpretedAs: 40000 });
     expect(json(await client.callTool({ name: 'check_value', arguments: { key: 'x.y', value: true } })).status).toBe('unbekannt');
     const bad = await client.callTool({ name: 'check_value', arguments: { key: '', value: 1 } }).catch((e: Error) => e);
     const failed = bad instanceof Error || (bad as { isError?: boolean }).isError === true;

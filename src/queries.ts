@@ -76,6 +76,8 @@ export interface CheckResult {
   status: CheckStatus;
   /** The value that was passed in. */
   yours: RefValue;
+  /** Set if `yours` was a number or switch sent as text ("0.01", "true") and was compared as that number or switch. */
+  interpretedAs?: number | boolean;
   /** The reference value of the knowledge base; missing if the key is unknown. */
   reference?: RefValue;
   /** The fact the reference comes from; missing if the key is unknown. */
@@ -86,16 +88,37 @@ function same(a: RefValue, b: RefValue): boolean {
   return typeof a === 'number' && typeof b === 'number' ? Math.abs(a - b) < 1e-9 : a === b;
 }
 
+/**
+ * Agents often send numbers and switches as text ("0.01", "true"), because the tool accepts several types. A text that
+ * is exactly a number or a switch is read as that when the reference is a number or a switch (no decimal comma, no
+ * empty text). Returns the reading, or undefined if no reading applies.
+ */
+export function readAsReference(value: RefValue, reference: RefValue): number | boolean | undefined {
+  if (typeof value !== 'string') return undefined;
+  const text = value.trim();
+  if (typeof reference === 'number') {
+    const n = Number(text);
+    return text !== '' && Number.isFinite(n) ? n : undefined;
+  }
+  if (typeof reference === 'boolean') {
+    const lower = text.toLowerCase();
+    return lower === 'true' ? true : lower === 'false' ? false : undefined;
+  }
+  return undefined;
+}
+
 /** Compares a value of the calculator with the reference value of the knowledge base. */
 export function checkValue(facts: readonly Fact[], key: string, value: RefValue): CheckResult {
   const fact = facts.find((f) => key in f.refs);
   if (!fact) return { key, status: 'unbekannt', yours: value };
   const reference = fact.refs[key];
   const { id, title, status, checkedAt, validFrom, validUntil, sources, note } = fact;
+  const reading = readAsReference(value, reference);
   return {
     key,
-    status: same(value, reference) ? 'gleich' : 'abweichend',
+    status: same(reading ?? value, reference) ? 'gleich' : 'abweichend',
     yours: value,
+    ...(reading !== undefined ? { interpretedAs: reading } : {}),
     reference,
     fact: { id, title, status, checkedAt, validFrom, validUntil, sources, note },
   };

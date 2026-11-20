@@ -38,6 +38,12 @@ describe('MCP über HTTP (api/mcp.ts)', () => {
     expect(JSON.parse(body.result.content[0].text)).toMatchObject({ status: 'gleich', reference: 0.3 });
   });
 
+  it('F3.5 ruft check_value mit einer Zahl als Text über HTTP auf (so senden es Agenten)', async () => {
+    const res = await rpc({ jsonrpc: '2.0', id: 3, method: 'tools/call', params: { name: 'check_value', arguments: { key: 'funding.grundRate', value: '0.3' } } });
+    const body = await res.json();
+    expect(JSON.parse(body.result.content[0].text)).toMatchObject({ status: 'gleich', yours: '0.3', interpretedAs: 0.3 });
+  });
+
   it('GET ist nicht erlaubt (zustandslos, nur POST)', async () => {
     const res = await fetch(url);
     expect(res.status).toBe(405);
