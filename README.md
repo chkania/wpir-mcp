@@ -30,6 +30,8 @@ Im Repo `wpir` steht die Verbindung in `.mcp.json`.
 
 ## Lokal entwickeln
 
+Voraussetzung: Node.js 26.x (wie Vercel und CI).
+
 ```bash
 npm install
 npm test             # Tests (Datenqualität, Abfragen, SDK-Client, HTTP-Endpunkt)
@@ -39,7 +41,7 @@ npm run dev          # http://localhost:3000/mcp
 
 ## Bereitstellen bei Vercel
 
-1. In Vercel **Add New → Project** und das Repo `chkania/wpir-mcp` importieren (Framework „Other“, keine Build- oder Output-Einstellungen nötig, keine Umgebungsvariablen).
+1. In Vercel **Add New → Project** und das Repo `chkania/wpir-mcp` importieren (Framework „Other“, Einstellung „Node.js Version 26.x“, keine Build- oder Output-Einstellungen nötig, keine Umgebungsvariablen).
 2. Vercel erkennt `api/mcp.ts` als Funktion; `vercel.json` leitet `/mcp` dorthin.
 3. Nach dem Deployment prüfen: `curl -s -X POST https://mcp.wpir.de/mcp -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'`.
 4. Die Domain `mcp.wpir.de` bei Vercel dem Projekt zuordnen (Settings → Domains, CNAME-Eintrag bei der Domain). Die URL steht in `.mcp.json` des Repos `wpir`; der Alias `wpir-mcp.vercel.app` funktioniert ebenfalls.

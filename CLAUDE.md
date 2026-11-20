@@ -19,6 +19,7 @@ MCP-Server (Streamable HTTP, zustandslos, nur lesend) auf Vercel mit Förderprog
 - **TypeScript bleibt bei 5.9** (`~5.9.3`): Der Vercel-Builder liest `ts.sys`, das es in TypeScript 7 nicht gibt; mit 7 bricht der Build ab.
 - **Dateinamen:** Keine Datei `src/server.ts`, `src/index.ts`, `server.ts` o. Ä. anlegen – Vercel hält sie für den Einstiegspunkt einer Server-App und wählt den falschen Builder (deshalb heißt die Datei `src/mcp-server.ts`, zusätzlich `"framework": null` in `vercel.json`).
 - **Imports** relativ mit Endung `.js` (Node-ESM; der Typecheck mit `NodeNext` erzwingt das).
+- **Node 26.x:** `engines.node` in `package.json` ist `26.x` und hat Vorrang vor der Projekteinstellung in Vercel; Lockfile-Wurzel und CI (`node-version`) ziehen mit (`tests/node-version.test.ts`).
 
 ## Daten pflegen
 Jeder Fakt braucht Quelle (URL, Lesedatum), Prüfdatum und Status; Referenzwerte tragen den Feldpfad des Rechners (`funding.grundRate`), Prozent als Anteil, Monate „JJJJ-MM“. Nichts ohne Quelle eintragen, Unsicheres als `note`. Preise und Marktdaten gehören nicht hinein.
