@@ -1,6 +1,6 @@
 # Prüfliste für Anforderungen
 
-Gemeinsame Referenz für `requirements-author` und `requirements-reviewer`. Eine Anforderung ist **vollständig**, wenn jeder Punkt beantwortet oder ausdrücklich als „betrifft nicht“ markiert ist, und **konsistent**, wenn nichts davon `docs/anforderungen/` (F*, N*) oder sich selbst widerspricht.
+Gemeinsame Referenz für die Agenten `requirements-author` und `requirements-reviewer` des Plugins `chk-sdlc`. Eine Anforderung ist **vollständig**, wenn jeder Punkt beantwortet oder ausdrücklich als „betrifft nicht“ markiert ist, und **konsistent**, wenn nichts davon `docs/anforderungen/` (F*, N*) oder sich selbst widerspricht.
 
 ## Format der Anforderung
 

@@ -1,0 +1,10 @@
+{
+  "extraKnownMarketplaces": {
+    "claude-chk-sdlc": {
+      "source": { "source": "github", "repo": "chkania/claude-chk-sdlc" }
+    }
+  },
+  "enabledPlugins": {
+    "chk-sdlc@claude-chk-sdlc": true
+  }
+}

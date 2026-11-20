@@ -1,6 +1,6 @@
-# Laufbuch der Agentenkette `/feature`
+# Laufbuch der Agentenkette `/chk-sdlc:feature`
 
-Je Lauf ein Abschnitt, neueste unten. Der Skill `feature` hängt ihn nach Schritt 7 an; `/feature-retro` wertet das Laufbuch aus. Tokens und Dauer aus den Abschluss-Meldungen der Agenten (Summe aller Durchgänge), gerundet.
+Je Lauf ein Abschnitt, neueste unten. Der Skill `chk-sdlc:feature` hängt ihn nach Schritt 7 an; `/chk-sdlc:retro` wertet das Laufbuch aus. Tokens und Dauer aus den Abschluss-Meldungen der Agenten (Summe aller Durchgänge), gerundet.
 
 Felder:
 - **Stufen:** je Stufe Modell, Durchgänge, Tokens, Dauer.
