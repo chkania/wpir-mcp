@@ -4,7 +4,7 @@ Fachlicher Rahmen von wpir-mcp. Er gilt für jede neue oder geänderte Anforderu
 
 ## Zweck
 
-Ein MCP-Server (Model Context Protocol) mit **Förderprogrammen und gesetzlichen Regelungen** rund um den Umstieg von Gas oder Öl auf eine Wärmepumpe (KfW 458, KfW 358/359, § 35c EStG, Darlehensrecht). Er ist die gepflegte, mit Quellen belegte Wissensbasis, gegen die der Wärmepumpen-Investitionsrechner (Repo `wpir`) seine Standardwerte auf Aktualität prüfen lässt. Er beantwortet: **Was gilt laut Quelle, seit wann und wie sicher – und stimmt der Wert im Rechner damit überein?**
+Ein MCP-Server (Model Context Protocol) mit **Förderprogrammen und gesetzlichen Regelungen** rund um den Umstieg von Gas oder Öl auf eine Wärmepumpe (KfW 458, KfW 358/359, § 35c EStG, Darlehensrecht, CO₂-Preis, Gebäudemodernisierungsgesetz, Strom und Netz, Umsatzsteuer). Er ist die gepflegte, mit Quellen belegte Wissensbasis, gegen die der Wärmepumpen-Investitionsrechner (Repo `wpir`) seine Standardwerte auf Aktualität prüfen lässt. Er beantwortet: **Was gilt laut Quelle, seit wann und wie sicher – und stimmt der Wert im Rechner damit überein?**
 
 ## Benutzer
 

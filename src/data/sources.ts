@@ -6,6 +6,9 @@ type Source = FactInput['sources'][number];
 /** Day the sources below were last read (taken over from the calculator's review of 2026-11-11). */
 const READ = '2026-11-11';
 
+/** Day the sources below were read (added with the legal values of 2026-11-20). */
+const READ_2026_11_20 = '2026-11-20';
+
 export const BEG_EM_RICHTLINIE: Source = {
   label: 'BEG-EM-Richtlinie vom 17.08.2026 (BAnz AT 27.08.2026 B1)',
   url: 'https://www.bundesanzeiger.de/pub/publication/jLXvW09kHTQoDINAdoC/content/jLXvW09kHTQoDINAdoC/BAnz%20AT%2027.08.2026%20B1.pdf?inline',
@@ -58,4 +61,52 @@ export const BGB_502: Source = {
   label: '§ 502 BGB (Vorfälligkeitsentschädigung bei Verbraucherdarlehen)',
   url: 'https://www.gesetze-im-internet.de/bgb/__502.html',
   retrievedAt: READ,
+};
+
+export const USTG_12: Source = {
+  label: '§ 12 Abs. 1 UStG',
+  url: 'https://www.gesetze-im-internet.de/ustg_1980/__12.html',
+  retrievedAt: READ_2026_11_20,
+};
+
+export const BNETZA_EEG_FOERDERUNG: Source = {
+  label: 'BNetzA „EEG-Förderung und -Fördersätze“ (§ 21 Abs. 1 i. V. m. §§ 48, 49, 53 Abs. 1 EEG 2023)',
+  url: 'https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/ErneuerbareEnergien/EEG_Foerderung/artikel.html',
+  retrievedAt: READ_2026_11_20,
+};
+
+export const MSBG_30: Source = {
+  label: '§ 30 Abs. 1 Nr. 4 und Abs. 2 MsbG',
+  url: 'https://www.gesetze-im-internet.de/messbg/__30.html',
+  retrievedAt: READ_2026_11_20,
+};
+
+export const BUNDESTAG_GMODG: Source = {
+  label: 'Bundestag Textarchiv 2026 KW 28 (Heizungsgesetz)',
+  url: 'https://www.bundestag.de/dokumente/textarchiv/2026/kw28-de-heizungsgesetz-1194534',
+  retrievedAt: READ_2026_11_20,
+};
+
+export const BGBL_2026_226: Source = {
+  label: 'BGBl. 2026 I Nr. 226 vom 28.07.2026',
+  url: 'https://www.recht.bund.de/bgbl/1/2026/226/VO.html',
+  retrievedAt: READ_2026_11_20,
+};
+
+export const BEHG_10: Source = {
+  label: '§ 10 Abs. 2 Satz 4 BEHG',
+  url: 'https://www.gesetze-im-internet.de/behg/__10.html',
+  retrievedAt: READ_2026_11_20,
+};
+
+export const BUNDESTAG_BEHG_KW39: Source = {
+  label: 'Bundestag Textarchiv 2026 KW 39 (Brennstoffemissionshandelsgesetz)',
+  url: 'https://www.bundestag.de/dokumente/textarchiv/2026/kw39-de-brennstoffemissionshandelsgesetz-1211312',
+  retrievedAt: READ_2026_11_20,
+};
+
+export const BNETZA_PARA_14A: Source = {
+  label: 'BNetzA „Reduzierung des Netzentgelts“ (§ 14a EnWG)',
+  url: 'https://www.bundesnetzagentur.de/DE/Vportal/Energie/SteuerbareVBE/Netzentgelt_table.html',
+  retrievedAt: READ_2026_11_20,
 };

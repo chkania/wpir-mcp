@@ -1,7 +1,16 @@
 import { z } from 'zod';
 
 /** Themes of the knowledge base. */
-export const TOPICS = ['foerderung-kfw-458', 'kredit-kfw-358-359', 'steuer-35c', 'darlehensrecht'] as const;
+export const TOPICS = [
+  'foerderung-kfw-458',
+  'kredit-kfw-358-359',
+  'steuer-35c',
+  'darlehensrecht',
+  'co2-preis',
+  'gebaeudemodernisierung',
+  'strom-netz',
+  'umsatzsteuer',
+] as const;
 export type Topic = (typeof TOPICS)[number];
 
 /** How well a fact is backed: official source read, only a secondary source, or an assumption of the calculator. */
