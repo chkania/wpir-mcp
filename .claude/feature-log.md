@@ -14,3 +14,9 @@ Felder:
 - **Früh gefunden (Reviewer):** ID-Kollision F2.6 (Test auf eindeutige IDs), CO₂-Korridor 2027 inzwischen vom Bundestag beschlossen, drei fehlende Dateien in der Bereichsliste.
 - **Nutzer:** 5 Rückfragen (CO₂-Pfad, bioSteps-Format, § 14a, MsbG-Höchstwert, Themenzuschnitt), 2 Freigaben.
 - **Notiz:** Bash-Aufrufe liefen über einen umschreibenden Hook (rtk), Wiederholung nötig. Quellen teils nur über Zusammenfassungen gelesen; Bio-Treppe bleibt `sekundaerquelle`.
+
+## 2026-11-20 – Startseite mit MCP-Beschreibung (F4)
+- **Stufen (Anforderung Sonnet 5.5, Rest Sonnet 5.5):** Autor 3 Durchgänge (~280k Tokens, ~5 min, zuletzt Dateiablage per Orchestrator nötig); Reviewer 1 (~62k, ~4 min); Implementierer 2 (~127k, ~3 min); Code-Review 1 (~34k, ~0,5 min); QA 1 (~28k, ~0,5 min).
+- **Spät gefunden:** Der Autor hatte das Schreibwerkzeug nicht; die Datei musste der Orchestrator anlegen. Der Reviewer fand, dass die Schrift-Untermenge „latin“ das Zeichen ₂ nicht enthält (CO₂-Fallback) und dass F4.6/F4.7-Muster Fehltreffer lieferten. Hätte der Autor mit Schriftauszug und Mustertest verhindern können.
+- **Nutzer:** 2 Rückfragerunden (Rechner-Link, Schrift, Dunkelmodus; Adresse, „nur dunkel“ präzisiert), 2 Freigaben. Die Beispielseite nur als Gliederung, nicht kopiert.
+- **Notiz:** Der Lauf für Vercel Analytics wurde vom Nutzer verworfen (Branch feat/vercel-analytics ohne Commit, lokal). F4.8 (400 px) und Browser-Teil nur manuell in der Vorschau prüfbar.

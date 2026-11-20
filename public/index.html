@@ -6,12 +6,158 @@
   <title>wpir-mcp</title>
   <meta name="description" content="MCP-Server mit Förderprogrammen und gesetzlichen Regelungen für den Wärmepumpen-Investitionsrechner." />
   <meta name="robots" content="noindex" />
+  <style>
+    @font-face {
+      font-family: 'Inter Variable';
+      src: url(/fonts/inter-latin-wght-normal.woff2) format('woff2');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'JetBrains Mono Variable';
+      src: url(/fonts/jetbrains-mono-latin-wght-normal.woff2) format('woff2');
+      font-weight: 100 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* Dunkles Schema im Stil des Rechners (Variante „modern“, dunkel). Kein Umschalter. */
+    :root {
+      color-scheme: dark;
+      --bg: #17181b;
+      --surface: #1d1f23;
+      --line: #34363c;
+      --text: #ecebe7;
+      --muted: #9a978d;
+      --accent: #6fa3dc;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    h1 { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.5rem; }
+    h2 { font-size: 1.1rem; font-weight: 600; margin: 2.25rem 0 0.75rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+    p { margin: 0.5rem 0; }
+    ul { padding-left: 1.25rem; margin: 0.5rem 0; }
+    li { margin: 0.35rem 0; }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .kicker {
+      font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
+    }
+    .lead { color: var(--muted); margin: 0; }
+    .muted { color: var(--muted); font-size: 0.92rem; }
+
+    code {
+      font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.88em;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 0.1em 0.35em;
+      overflow-wrap: anywhere;
+    }
+    pre {
+      font-family: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 0.9rem 1rem;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    pre code { background: none; border: 0; padding: 0; overflow-wrap: normal; }
+
+    dl { margin: 0; }
+    dt { margin-top: 0.9rem; }
+    dd { margin: 0.2rem 0 0; color: var(--muted); }
+    .topics { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.4rem 1.25rem; }
+    .topics li { margin: 0; }
+
+    footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>wpir-mcp</h1>
-    <p>MCP-Server mit Förderprogrammen und gesetzlichen Regelungen für den <a href="https://waermepumpen-investitionsrechner.de/">Wärmepumpen-Investitionsrechner</a>. Öffentlich und nur lesend.</p>
-    <p>Der MCP-Endpunkt ist <code>/mcp</code> (nur POST, Streamable HTTP). Beschreibung, Werkzeuge und Quellcode: <a href="https://github.com/chkania/wpir-mcp">github.com/chkania/wpir-mcp</a>.</p>
-  </main>
+  <div class="wrap">
+    <header>
+      <p class="kicker">MCP-Server · öffentlich · nur lesend</p>
+      <h1>wpir-mcp</h1>
+      <p class="lead">MCP-Server (Model Context Protocol) mit Förderprogrammen und gesetzlichen Regelungen rund um den Umstieg von Gas oder Öl auf eine Wärmepumpe.</p>
+      <p class="muted">Der Server dient dem <a href="https://waermepumpen-investitionsrechner.de/">Wärmepumpen-Investitionsrechner</a> als Wissensbasis, gegen die seine Standardwerte auf Aktualität geprüft werden.</p>
+    </header>
+
+    <main>
+      <section id="hinweise">
+        <h2>Hinweise</h2>
+        <ul>
+          <li>Jeder Fakt trägt Quelle, Prüfdatum und Status (bestätigt, Sekundärquelle oder Annahme).</li>
+          <li>Maßgeblich sind die Originalquellen, die jeder Fakt angibt. Die Angaben sind keine Rechts- oder Förderberatung.</li>
+          <li>Der Server ist öffentlich und nur lesend: keine Anmeldung, kein Schreibzugriff.</li>
+          <li>Keine Nutzerdaten: Der Server verarbeitet nur die gesendeten Feldpfade und Werte und speichert oder protokolliert sie nicht.</li>
+        </ul>
+      </section>
+
+      <section id="anbindung">
+        <h2>Anbindung</h2>
+        <p>Adresse des MCP-Endpunkts: <code>https://mcp.wpir.de/mcp</code></p>
+        <p>Verbinden Sie den Server mit Claude Code über diesen Befehl:</p>
+        <pre><code>claude mcp add --transport http wpir-mcp https://mcp.wpir.de/mcp</code></pre>
+        <p>Der Endpunkt nimmt nur POST entgegen (Streamable HTTP); andere Methoden werden mit 405 abgewiesen.</p>
+        <p>Beispielaufruf für <code>check_value</code> mit dem Feldpfad <code>funding.grundRate</code> und dem Wert 0.25:</p>
+        <pre><code>{ "name": "check_value", "arguments": { "key": "funding.grundRate", "value": 0.25 } }</code></pre>
+      </section>
+
+      <section id="werkzeuge">
+        <h2>Werkzeuge</h2>
+        <p class="muted">Alle Werkzeuge sind nur lesend.</p>
+        <dl>
+          <dt><code>list_topics</code></dt>
+          <dd>Listet die Themen mit der Anzahl ihrer Fakten und dem ältesten Prüfdatum.</dd>
+          <dt><code>get_facts</code></dt>
+          <dd>Liefert Fakten nach Thema, ID, Freitext oder Feldpfad des Rechners, mit Regel, Referenzwerten, Gültigkeit, Status, Prüfdatum und Quellen.</dd>
+          <dt><code>list_sources</code></dt>
+          <dd>Liefert jede Quelle einmal, mit den Fakten, die sie belegen.</dd>
+          <dt><code>list_keys</code></dt>
+          <dd>Liefert die Feldpfade des Rechners, für die es einen Referenzwert gibt.</dd>
+          <dt><code>check_value</code></dt>
+          <dd>Vergleicht einen Wert des Rechners mit dem Referenzwert und meldet gleich, abweichend oder unbekannt, mit Quelle.</dd>
+        </dl>
+      </section>
+
+      <section id="themen">
+        <h2>Themen</h2>
+        <p class="muted">Die Wissensbasis umfasst diese Themen; die Kennung steht in der Schrift, die Bezeichnung daneben.</p>
+        <ul class="topics">
+          <li><code>foerderung-kfw-458</code> Förderung KfW 458</li>
+          <li><code>kredit-kfw-358-359</code> Kredit KfW 358/359</li>
+          <li><code>steuer-35c</code> Steuer, § 35c EStG</li>
+          <li><code>darlehensrecht</code> Darlehensrecht</li>
+          <li><code>co2-preis</code> CO₂-Preis</li>
+          <li><code>gebaeudemodernisierung</code> Gebäudemodernisierung</li>
+          <li><code>strom-netz</code> Strom und Netz</li>
+          <li><code>umsatzsteuer</code> Umsatzsteuer</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p class="muted">Lizenz: PolyForm Noncommercial 1.0.0, siehe <a href="https://github.com/chkania/wpir-mcp/blob/main/LICENSE.md">LICENSE.md</a>. Quellcode: <a href="https://github.com/chkania/wpir-mcp">github.com/chkania/wpir-mcp</a>.</p>
+    </footer>
+  </div>
 </body>
 </html>
