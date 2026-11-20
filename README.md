@@ -1,6 +1,6 @@
 # wpir-mcp
 
-MCP-Server mit **Förderprogrammen und gesetzlichen Regelungen** rund um den Umstieg von Gas oder Öl auf eine Wärmepumpe (KfW 458, KfW 358/359, § 35c EStG, Darlehensrecht), jeweils mit Quelle, Prüfdatum und Status. Er ist die Wissensbasis, gegen die der [Wärmepumpen-Investitionsrechner](https://github.com/chkania/wpir) seine Standardwerte auf Aktualität prüfen lässt.
+MCP-Server mit **Förderprogrammen und gesetzlichen Regelungen** rund um den Umstieg von Gas oder Öl auf eine Wärmepumpe (KfW 458, KfW 358/359, § 35c EStG, Darlehensrecht, CO₂-Preis, Gebäudemodernisierungsgesetz, Strom und Netz, Umsatzsteuer), jeweils mit Quelle, Prüfdatum und Status. Er ist die Wissensbasis, gegen die der [Wärmepumpen-Investitionsrechner](https://github.com/chkania/wpir) seine Standardwerte auf Aktualität prüfen lässt.
 
 Öffentlich, nur lesend, zustandslos; keine Anmeldung, keine Nutzerdaten. Keine Rechts- oder Förderberatung – maßgeblich sind die verlinkten Originalquellen.
 
@@ -14,7 +14,7 @@ MCP-Server mit **Förderprogrammen und gesetzlichen Regelungen** rund um den Ums
 | `list_keys` | Feldpfade des Rechners, für die es einen Referenzwert gibt |
 | `check_value` | Wert des Rechners (`key`, `value`) gegen den Referenzwert prüfen: `gleich`, `abweichend`, `unbekannt` |
 
-Prozentwerte sind Anteile (0,3 = 30 %), Monate „JJJJ-MM“. Beispiel:
+Prozentwerte sind Anteile (0,3 = 30 %), Monate „JJJJ-MM“; Ausnahme ist `prices.bioSteps`, ein Text mit Prozentzahlen („2029:10, 2030:15, 2035:30, 2040:60“). Beispiel:
 
 ```json
 { "name": "check_value", "arguments": { "key": "funding.grundRate", "value": 0.25 } }

@@ -24,7 +24,7 @@ export function createServer(facts: readonly Fact[] = FACTS): McpServer {
     {
       title: 'Themen auflisten',
       description:
-        'Listet die Themen der Wissensbasis (Förderprogramme, Steuer, Darlehensrecht) mit Anzahl der Fakten und dem ältesten Prüfdatum.',
+        'Listet die Themen der Wissensbasis (Förderprogramme, Steuer, Darlehensrecht, CO₂-Preis, Gebäudemodernisierung, Strom und Netz, Umsatzsteuer) mit Anzahl der Fakten und dem ältesten Prüfdatum.',
       annotations: { readOnlyHint: true },
     },
     async () => asJson(listTopics(facts)),
