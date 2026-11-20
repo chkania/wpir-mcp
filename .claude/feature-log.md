@@ -20,3 +20,9 @@ Felder:
 - **Spät gefunden:** Der Autor hatte das Schreibwerkzeug nicht; die Datei musste der Orchestrator anlegen. Der Reviewer fand, dass die Schrift-Untermenge „latin“ das Zeichen ₂ nicht enthält (CO₂-Fallback) und dass F4.6/F4.7-Muster Fehltreffer lieferten. Hätte der Autor mit Schriftauszug und Mustertest verhindern können.
 - **Nutzer:** 2 Rückfragerunden (Rechner-Link, Schrift, Dunkelmodus; Adresse, „nur dunkel“ präzisiert), 2 Freigaben. Die Beispielseite nur als Gliederung, nicht kopiert.
 - **Notiz:** Der Lauf für Vercel Analytics wurde vom Nutzer verworfen (Branch feat/vercel-analytics ohne Commit, lokal). F4.8 (400 px) und Browser-Teil nur manuell in der Vorschau prüfbar.
+
+## 2026-11-20 – Laufzeit auf Node 26.x (N2.1, N2.1a, N2.3)
+- **Stufen (Autor, Reviewer, Implementierer, Code-Review, QA):** Autor 1 Durchgang (~57k Tokens, ~1,5 min); Reviewer 1 (~50k, ~2 min); Implementierer 2 (~82k + Nachbesserung, ~1,5 min); Code-Review 1 (~21k, ~0,3 min); QA 1 (~20k, ~0,4 min).
+- **Spät gefunden:** Der Autor-Entwurf kürzte N2.1, N2.1a und N2.3 und gab einen Vercel-Vorbehalt an, den die offizielle Doku widerlegt. Der Reviewer hat beides korrigiert. Der Lockfile-Widerspruch (`>=22` gegenüber `22.x`) wurde erst im Review gefunden. Hätte der Autor mit einem Diff-Blick auf die Node-Stellen verhindern können.
+- **Nutzer:** 2 Freigaben, keine Rückfragen. Die Vercel-Projekteinstellung ist manuell und noch offen.
+- **Notiz:** Die Node-Version der Läufe ist v26.8.2. Die Sekundärquellen-Angabe zu Node 26 wurde durch die offizielle Vercel-Doku und nodejs/Release ersetzt.
