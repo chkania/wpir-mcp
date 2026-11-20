@@ -23,7 +23,7 @@ Prozentwerte sind Anteile (0,3 = 30 %), Monate „JJJJ-MM“. Beispiel:
 ## Verbinden (Claude Code)
 
 ```bash
-claude mcp add --transport http wpir-mcp https://<dein-projekt>.vercel.app/mcp
+claude mcp add --transport http wpir-mcp https://mcp.wpir.de/mcp
 ```
 
 Im Repo `wpir` steht die Verbindung in `.mcp.json`.
@@ -41,8 +41,8 @@ npm run dev          # http://localhost:3000/mcp
 
 1. In Vercel **Add New → Project** und das Repo `chkania/wpir-mcp` importieren (Framework „Other“, keine Build- oder Output-Einstellungen nötig, keine Umgebungsvariablen).
 2. Vercel erkennt `api/mcp.ts` als Funktion; `vercel.json` leitet `/mcp` dorthin.
-3. Nach dem Deployment prüfen: `curl -s -X POST https://<dein-projekt>.vercel.app/mcp -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'`.
-4. Die URL in `.mcp.json` des Repos `wpir` eintragen.
+3. Nach dem Deployment prüfen: `curl -s -X POST https://mcp.wpir.de/mcp -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'`.
+4. Die Domain `mcp.wpir.de` bei Vercel dem Projekt zuordnen (Settings → Domains, CNAME-Eintrag bei der Domain). Die URL steht in `.mcp.json` des Repos `wpir`; der Alias `wpir-mcp.vercel.app` funktioniert ebenfalls.
 
 ## Daten pflegen
 
