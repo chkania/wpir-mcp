@@ -1,0 +1,47 @@
+# Dependabot: weekly updates for npm packages and GitHub Actions.
+# Dependency updates are proposed as pull requests; they run through the CI job "test" and
+# are merged manually (branch ruleset on main requires a pull request and a green "test" check).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Berlin
+    # Adopt new versions only after a few days (protection against compromised releases)
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    # Conventional Commits: "chore(deps): …" or "chore(deps-dev): …"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: scope
+    groups:
+      # Patch/minor updates grouped; major updates arrive individually for manual review
+      laufzeit:
+        dependency-type: production
+        update-types: [minor, patch]
+      entwicklung:
+        dependency-type: development
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Berlin
+    labels:
+      - dependencies
+    commit-message:
+      prefix: "ci"
+      include: scope
+    groups:
+      actions:
+        patterns: ["*"]
