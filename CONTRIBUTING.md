@@ -9,9 +9,9 @@ Der Server ist die gepflegte Wissensbasis für den [Wärmepumpen-Investitionsrec
 3. Pull Request auf `main` öffnen; Titel nach Conventional Commits, Beschreibung auf Deutsch.
 4. Nach grüner CI zusammenführen; ein Push auf `main` stellt bei Vercel bereit.
 
-## Mit Claude Code: die Agentenkette `/feature`
+## Mit Claude Code: die Agentenkette `/chk-sdlc:feature`
 
-Wenn du mit [Claude Code](https://claude.com/claude-code) arbeitest, kannst du eine Änderung von der Idee bis zum Pull Request von einer Kette spezialisierter Agenten erledigen lassen: `/feature <Beschreibung>`. Die Kette läuft in diesen Stufen: Anforderung (`requirements-author`, mit Zwischenfreigabe durch dich), Anforderungs-Review (`requirements-reviewer`, danach Freigabe durch dich), Umsetzung (`implementer`), Code-Review (`code-reviewer`) und QA (`qa`, prüft auch, ob die Tests zur Anforderung passen). Die Agenten und ihre Modelle liegen in [.claude/agents/](.claude/agents/), der Ablauf in [.claude/skills/feature/SKILL.md](.claude/skills/feature/SKILL.md). Gepusht wird erst nach deiner Bestätigung. `/feature-retro` wertet das Laufbuch [.claude/feature-log.md](.claude/feature-log.md) aus und schlägt Verbesserungen vor.
+Wenn du mit [Claude Code](https://claude.com/claude-code) arbeitest, kannst du eine Änderung von der Idee bis zum Pull Request von einer Kette spezialisierter Agenten erledigen lassen: `/chk-sdlc:feature <Beschreibung>`. Die Kette läuft in diesen Stufen: Anforderung (`requirements-author`, mit Zwischenfreigabe durch dich), Anforderungs-Review (`requirements-reviewer`, danach Freigabe durch dich), Umsetzung (`implementer`), Code-Review (`code-reviewer`) und QA (`qa`, prüft auch, ob die Tests zur Anforderung passen). Die Kette kommt aus dem Plugin [chkania/claude-chk-sdlc](https://github.com/chkania/claude-chk-sdlc) (aktiviert in `.claude/settings.json`); was für dieses Projekt gilt, steht in [.claude/feature-profile.md](.claude/feature-profile.md). Gepusht wird erst nach deiner Bestätigung. `/chk-sdlc:retro` wertet das Laufbuch [.claude/feature-log.md](.claude/feature-log.md) aus und schlägt Verbesserungen vor.
 
 ## Sprache
 

@@ -25,7 +25,7 @@ MCP-Server (Streamable HTTP, zustandslos, nur lesend) auf Vercel mit Förderprog
 Jeder Fakt braucht Quelle (URL, Lesedatum), Prüfdatum und Status; Referenzwerte tragen den Feldpfad des Rechners (`funding.grundRate`), Prozent als Anteil, Monate „JJJJ-MM“. Nichts ohne Quelle eintragen, Unsicheres als `note`. Preise und Marktdaten gehören nicht hinein.
 
 ## Agentenkette
-`/feature <Beschreibung>` führt von der Anforderung bis zum PR (Agenten in `.claude/agents/`, Prüfliste `.claude/requirements-checklist.md`, Laufbuch `.claude/feature-log.md`); `/feature-retro` wertet das Laufbuch aus. Die allgemeinen Agenten sind Kopien aus dem Repo `wpir`; Verbesserungen dort bitte hier nachziehen und umgekehrt.
+`/chk-sdlc:feature <Beschreibung>` führt von der Anforderung bis zum PR; die Kette kommt aus dem Plugin `chk-sdlc` (Repo `chkania/claude-chk-sdlc`, aktiviert in `.claude/settings.json`). Projektspezifisch: Profil `.claude/feature-profile.md`, Prüfliste `.claude/requirements-checklist.md`, Laufbuch `.claude/feature-log.md`. `/chk-sdlc:retro` wertet das Laufbuch aus.
 
 ## Konventionen
 - Code, Kommentare, Namen von Typen/Funktionen/Dateien: **Englisch**. Texte für Nutzer (Werkzeug-Beschreibungen, Fakten, Dokumentation, Commit-Beschreibung) **Deutsch**.
