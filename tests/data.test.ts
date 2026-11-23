@@ -90,6 +90,51 @@ describe('Wissensbasis: Qualität der Daten', () => {
     expect(texts.map(([k]) => k)).toEqual(['prices.bioSteps']);
   });
 
+  it('F2.9 kfw358-359-laufzeit: refs leer, validFrom 2026-09-24, Status bestätigt, Prüfdatum 2026-11-23, summary mit den Regelwerten', () => {
+    const f = FACTS.find((x) => x.id === 'kfw358-359-laufzeit')!;
+    expect(f.topic).toBe('kredit-kfw-358-359');
+    expect(f.title).toBe('KfW 358/359: Laufzeit, tilgungsfreie Anlaufjahre und Zinsbindung');
+    expect(f.refs).toEqual({});
+    expect(f.validFrom).toBe('2026-09-24');
+    expect(f.validUntil).toBeUndefined();
+    expect(f.status).toBe('bestaetigt');
+    expect(f.checkedAt).toBe('2026-11-23');
+    for (const part of ['4 Jahre', '35 Jahre', 'ersten 10 Jahre']) expect(f.summary, part).toContain(part);
+    for (const field of ['financing.kfwTermYears', 'financing.kfwGraceYears', 'financing.kfwFixYears']) expect(f.summary, field).toContain(field);
+  });
+
+  it('F2.9 kfw358-359-laufzeit: Quelle ist das Merkblatt 358/359 mit demselben Label und URL, gelesen am 2026-11-23', () => {
+    const f = FACTS.find((x) => x.id === 'kfw358-359-laufzeit')!;
+    expect(f.sources).toHaveLength(1);
+    expect(f.sources[0]).toEqual({ label: 'KfW-Merkblatt 358/359 (Stand 09/2026)', url: 'https://www.kfw.de/PDF/Download-Center/F%C3%B6rderprogramme-(Inlandsf%C3%B6rderung)/PDF-Dokumente/6000005135_M_358_359.pdf', retrievedAt: '2026-11-23' });
+  });
+
+  it('F2.10 kfw458-bewilligungszeitraum: refs nur funding.approvalMonths = 36, kein validFrom, Status bestätigt, Prüfdatum 2026-11-23', () => {
+    const f = FACTS.find((x) => x.id === 'kfw458-bewilligungszeitraum')!;
+    expect(f.topic).toBe('foerderung-kfw-458');
+    expect(f.refs).toEqual({ 'funding.approvalMonths': 36 });
+    expect(f.validFrom).toBeUndefined();
+    expect(f.status).toBe('bestaetigt');
+    expect(f.checkedAt).toBe('2026-11-23');
+    for (const part of ['36 Monaten', 'ab Zusage', 'sechs Monate']) expect(f.summary, part).toContain(part);
+    expect(f.note).toContain('Zusage');
+    expect(f.note).toContain('A10');
+  });
+
+  it('F2.10 kfw458-bewilligungszeitraum: Quelle ist das Merkblatt 458 mit demselben Label und URL, gelesen am 2026-11-23', () => {
+    const f = FACTS.find((x) => x.id === 'kfw458-bewilligungszeitraum')!;
+    expect(f.sources).toEqual([{ label: 'KfW-Merkblatt 458 (Stand 09/2026)', url: 'https://www.kfw.de/PDF/Download-Center/F%C3%B6rderprogramme-(Inlandsf%C3%B6rderung)/PDF-Dokumente/6000005131_M_458.pdf', retrievedAt: '2026-11-23' }]);
+  });
+
+  it('F2.9 und F2.10 die sechs bestehenden Merkblatt-Fakten behalten Lesedatum 2026-11-11 und Prüfdatum 2026-11-18 (F2.4)', () => {
+    const merkblatt = FACTS.filter((f) => !['kfw358-359-laufzeit', 'kfw458-bewilligungszeitraum'].includes(f.id) && f.sources.some((s) => s.label.includes('Merkblatt')));
+    expect(merkblatt.map((f) => f.id).sort()).toEqual(['kfw358-359-kreditrahmen', 'kfw358-359-sondertilgung', 'kfw458-einkommensbonus', 'kfw458-grundfoerderung', 'kfw458-hoechstfoerdersatz', 'kfw458-klimageschwindigkeitsbonus']);
+    for (const f of merkblatt) {
+      expect(f.checkedAt, f.id).toBe('2026-11-18');
+      for (const s of f.sources.filter((x) => x.label.includes('Merkblatt'))) expect(s.retrievedAt, f.id).toBe('2026-11-11');
+    }
+  });
+
   it('defineFacts weist ungültige Fakten mit ihrer ID zurück', () => {
     expect(() => defineFacts([{ id: 'Falsch ID', topic: 'steuer-35c', title: 't', summary: 's', status: 'annahme', checkedAt: '2026-11-18', sources: [] }])).toThrow(/Falsch ID/);
     expect(() => defineFacts([{ id: 'ok', topic: 'steuer-35c', title: 't', summary: 's', status: 'annahme', checkedAt: '18.11.2026', sources: [{ label: 'x', url: 'https://example.org', retrievedAt: '2026-11-18' }] }])).toThrow(/ok/);

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { FACTS } from '../src/data/index.js';
 import { checkValue, findFacts, knownKeys, listSources, listTopics, readAsReference } from '../src/queries.js';
-import { BASE_KEYS, EXPECTED_KEYS, NEW_KEYS } from './keys-fixture.js';
+import { BASE_KEYS, EXPECTED_KEYS, F2_10_KEYS, NEW_KEYS } from './keys-fixture.js';
 
 describe('Abfragen', () => {
   it('Themen mit Anzahl und ältestem Prüfdatum', () => {
@@ -91,9 +91,10 @@ describe('Abfragen', () => {
     expect(new Set(keys).size).toBe(keys.length);
   });
 
-  it('F2.6 und F2.8 list_keys: Menge = Basis-Schlüssel plus genau die fünf Rechtswerte', () => {
+  it('F2.6, F2.8 und F2.10 list_keys: Menge = Basis-Schlüssel plus Bewilligungszeitraum plus genau die fünf Rechtswerte', () => {
     expect(knownKeys(FACTS)).toEqual(EXPECTED_KEYS);
-    expect(EXPECTED_KEYS).toHaveLength(BASE_KEYS.length + NEW_KEYS.length);
+    expect(EXPECTED_KEYS).toHaveLength(BASE_KEYS.length + F2_10_KEYS.length + NEW_KEYS.length);
+    expect(knownKeys(FACTS)).toHaveLength(44);
   });
 
   it('F2.6 general.vat: 0.19 gleich mit Fakt, Text "0.19" gelesen, 0.2 abweichend', () => {
@@ -148,5 +149,45 @@ describe('Abfragen', () => {
       expect(checkValue(FACTS, key, 130), key).toEqual({ key, status: 'unbekannt', yours: 130 });
       expect(checkValue(FACTS, key, '130'), key).toEqual({ key, status: 'unbekannt', yours: '130' });
     }
+  });
+
+  it('F2.9 Laufzeit-Felder ohne Referenzwert sind unbekannt, auch bei Text', () => {
+    for (const key of ['financing.kfwTermYears', 'financing.kfwGraceYears', 'financing.kfwFixYears']) {
+      expect(knownKeys(FACTS), key).not.toContain(key);
+      expect(checkValue(FACTS, key, 10), key).toEqual({ key, status: 'unbekannt', yours: 10 });
+      expect(checkValue(FACTS, key, '10'), key).toEqual({ key, status: 'unbekannt', yours: '10' });
+    }
+  });
+
+  it('F2.9 Rechnerfelder der Laufzeit-Regel sind über den Feldnamen per Freitext findbar', () => {
+    expect(findFacts(FACTS, { query: 'kfwFixYears' }).map((f) => f.id)).toEqual(['kfw358-359-laufzeit']);
+    expect(findFacts(FACTS, { query: 'kfwTermYears' }).map((f) => f.id)).toEqual(['kfw358-359-laufzeit']);
+    expect(findFacts(FACTS, { query: 'kfwGraceYears' }).map((f) => f.id)).toEqual(['kfw358-359-laufzeit']);
+  });
+
+  it('F2.10 funding.approvalMonths: Filter per Feldpfad und Freitext liefern genau den Fakt', () => {
+    expect(findFacts(FACTS, { key: 'funding.approvalMonths' }).map((f) => f.id)).toEqual(['kfw458-bewilligungszeitraum']);
+    expect(findFacts(FACTS, { query: 'Bewilligungszeitraum' }).map((f) => f.id)).toEqual(['kfw458-bewilligungszeitraum']);
+  });
+
+  it('F2.10 check_value funding.approvalMonths: 36 gleich, Text "36" gelesen, 24 und Text "2029-12" abweichend', () => {
+    expect(checkValue(FACTS, 'funding.approvalMonths', 36)).toMatchObject({ status: 'gleich', reference: 36, fact: { id: 'kfw458-bewilligungszeitraum' } });
+    expect(checkValue(FACTS, 'funding.approvalMonths', '36')).toMatchObject({ status: 'gleich', interpretedAs: 36, reference: 36 });
+    expect(checkValue(FACTS, 'funding.approvalMonths', 24)).toMatchObject({ status: 'abweichend', reference: 36 });
+    const text = checkValue(FACTS, 'funding.approvalMonths', '2029-12');
+    expect(text.status).toBe('abweichend');
+    expect(text).not.toHaveProperty('interpretedAs');
+  });
+
+  it('F2.9 und F2.10 list_sources: die Merkblätter 358/359 und 458 je URL mit Lesedatum 2026-11-23 und dem neuen Fakt', () => {
+    const sources = listSources(FACTS);
+    const m358 = sources.find((s) => s.label === 'KfW-Merkblatt 358/359 (Stand 09/2026)')!;
+    const m458 = sources.find((s) => s.label === 'KfW-Merkblatt 458 (Stand 09/2026)')!;
+    expect(m358.retrievedAt).toBe('2026-11-23');
+    expect(m358.factIds).toContain('kfw358-359-laufzeit');
+    expect(m458.retrievedAt).toBe('2026-11-23');
+    expect(m458.factIds).toContain('kfw458-bewilligungszeitraum');
+    expect(sources.filter((s) => s.url === m458.url)).toHaveLength(1);
+    expect(sources.filter((s) => s.url === m358.url)).toHaveLength(1);
   });
 });

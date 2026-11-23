@@ -9,6 +9,9 @@ const READ = '2026-11-11';
 /** Day the sources below were read (added with the legal values of 2026-11-20). */
 const READ_2026_11_20 = '2026-11-20';
 
+/** Day the KfW-Merkblätter 458 and 358/359 were read for the term and approval-period facts (F2.9, F2.10). */
+const READ_2026_11_23 = '2026-11-23';
+
 export const BEG_EM_RICHTLINIE: Source = {
   label: 'BEG-EM-Richtlinie vom 17.08.2026 (BAnz AT 27.08.2026 B1)',
   url: 'https://www.bundesanzeiger.de/pub/publication/jLXvW09kHTQoDINAdoC/content/jLXvW09kHTQoDINAdoC/BAnz%20AT%2027.08.2026%20B1.pdf?inline',
@@ -32,6 +35,12 @@ export const KFW_358_359_MERKBLATT: Source = {
   url: 'https://www.kfw.de/PDF/Download-Center/F%C3%B6rderprogramme-(Inlandsf%C3%B6rderung)/PDF-Dokumente/6000005135_M_358_359.pdf',
   retrievedAt: READ,
 };
+
+/** Same document as KFW_458_MERKBLATT, read on 2026-11-23 (F2.10). The label and URL are not repeated. */
+export const KFW_458_MERKBLATT_2026_11_23: Source = { ...KFW_458_MERKBLATT, retrievedAt: READ_2026_11_23 };
+
+/** Same document as KFW_358_359_MERKBLATT, read on 2026-11-23 (F2.9). The label and URL are not repeated. */
+export const KFW_358_359_MERKBLATT_2026_11_23: Source = { ...KFW_358_359_MERKBLATT, retrievedAt: READ_2026_11_23 };
 
 export const KFW_358_359_SEITE: Source = {
   label: 'KfW 358/359 Produktseite (Zinsen dort nicht verfügbar)',
