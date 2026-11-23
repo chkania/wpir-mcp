@@ -4,7 +4,7 @@ Fachlicher Rahmen von wpir-mcp. Er gilt für jede neue oder geänderte Anforderu
 
 ## Zweck
 
-Ein MCP-Server (Model Context Protocol) mit **Förderprogrammen und gesetzlichen Regelungen** rund um den Umstieg von Gas oder Öl auf eine Wärmepumpe (KfW 458, KfW 358/359, § 35c EStG, Darlehensrecht, CO₂-Preis, Gebäudemodernisierungsgesetz, Strom und Netz, Umsatzsteuer). Er ist die gepflegte, mit Quellen belegte Wissensbasis, gegen die der Wärmepumpen-Investitionsrechner (Repo `wpir`) seine Standardwerte auf Aktualität prüfen lässt. Er beantwortet: **Was gilt laut Quelle, seit wann und wie sicher – und stimmt der Wert im Rechner damit überein?**
+Ein MCP-Server (Model Context Protocol) mit **Förderprogrammen und gesetzlichen Regelungen** rund um den Umstieg von Gas oder Öl auf eine Wärmepumpe (KfW 458, KfW 358/359, § 35c EStG, Darlehensrecht, CO₂-Preis, Gebäudemodernisierungsgesetz, Strom und Netz, Umsatzsteuer). Er ist die gepflegte, mit Quellen belegte Wissensbasis, gegen die der Wärmepumpen-Investitionsrechner (Repo `wpir`) seine Standardwerte auf Aktualität prüfen lässt. Er beantwortet: **Was gilt laut Quelle, seit wann und wie sicher – und stimmt der Wert im Rechner damit überein?** Dazu gehören Preis- und Marktdaten (Energie-, Zins- und Kostenmärkte wie Einspeisevergütung, Strom- und Gaspreise, Zinssätze), die mit denselben Pflichtfeldern gepflegt werden: Quelle mit URL und Lesedatum, Prüfdatum und Status, Sekundärquellen nur als `sekundaerquelle`.
 
 ## Benutzer
 
@@ -29,7 +29,6 @@ Ein MCP-Server (Model Context Protocol) mit **Förderprogrammen und gesetzlichen
 ## Was wpir-mcp nicht ist
 
 - **Kein Ersatz für Rechtsberatung oder Förderberatung** und keine amtliche Quelle; er verweist auf die Originale.
-- **Keine Preis- und Marktdaten:** Energie-, Zins- und Kostenmärkte (z. B. Gaspreis, Strompreis) gehören nicht hinein, nur Regeln und Fördersätze mit Rechtsgrundlage.
 - **Kein Rechenkern:** Er rechnet nichts durch; die Berechnung bleibt im Rechner.
 - **Keine automatische Aktualisierung** der Daten und kein Abruf der Quellen zur Laufzeit; Prüfen und Pflegen sind Aufgaben des Projekts.
 - **Kein Online-Dienst mit Konten, Schreibzugriff oder Benachrichtigungen.**
@@ -40,7 +39,7 @@ Eine Anforderung ist **gedeckt**, wenn sie (1) auf einen ausdrücklichen Wunsch 
 
 - **Nicht erfunden:** Jeder Punkt lässt sich auf die Eingabe des Nutzers, eine bestehende Anforderung oder eine zwingende Folge (Sicherheit, Fehlerfälle, Dokumentation) zurückführen. Zusätzliche Werkzeuge, Felder oder Themen „für später“ sind nicht gedeckt.
 - **Nicht zu komplex:** Die einfachste Lösung, die den Wunsch erfüllt, wird gewählt.
-- **Kein Widerspruch:** kein Schreibzugriff, keine Anmeldung, keine Speicherung von Anfragen, keine Marktdaten, keine Berechnung.
+- **Kein Widerspruch:** kein Schreibzugriff, keine Anmeldung, keine Speicherung von Anfragen, keine Berechnung.
 - **Maß halten bei Folgearbeit:** Grenzfälle, Fehlertexte, Tests und Dokumentation sind gedeckt; neue Nebenfunktionen daraus nicht.
 
 Ist eine Anforderung nicht gedeckt, streicht der Reviewer sie oder legt sie dem Nutzer als offenen Punkt vor.
