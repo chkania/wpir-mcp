@@ -31,3 +31,11 @@ Zweck, Benutzer, Grundentscheidungen und Abgrenzung stehen in der [Produktbeschr
 | [N1](N1-nur-lesend-oeffentlich.md) | Nur lesend, öffentlich, ohne Nutzerdaten |
 | [N2](N2-betrieb-auf-vercel.md) | Betrieb auf Vercel |
 | [N3](N3-qualitaet.md) | Qualität |
+
+## Pflege
+
+Anforderungen an die Pflege der Wissensbasis (Präfix `P`): Sie beschreiben Werkzeuge für den Projektinhaber, nicht den Server.
+
+| ID | Titel |
+|---|---|
+| [P1](P1-quellenabgleich.md) | Quellenabgleich der Wissensbasis (Pflege-Agent `source-check`) |

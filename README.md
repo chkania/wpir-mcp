@@ -48,7 +48,7 @@ npm run dev          # http://localhost:3000/mcp
 
 ## Daten pflegen
 
-Die Wissensbasis liegt unter `src/data/` (eine Datei je Thema). Jeder Fakt braucht Quelle, Prüfdatum und Status; siehe [CLAUDE.md](CLAUDE.md). Anforderungen: [docs/anforderungen/](docs/anforderungen/README.md). Mitarbeit: [CONTRIBUTING.md](CONTRIBUTING.md).
+Die Wissensbasis liegt unter `src/data/` (eine Datei je Thema). Jeder Fakt braucht Quelle, Prüfdatum und Status; siehe [CLAUDE.md](CLAUDE.md). Zum Abgleich der Fakten mit ihren Quellen gibt es den Agenten `source-check` (`.claude/agents/source-check.md`): Er liefert zuerst eine Vergleichstabelle und Vorschläge, ändert aber nichts; erst nach Bestätigung entsteht ein Anforderungstext für `/chk-sdlc:feature`. Anforderungen: [docs/anforderungen/](docs/anforderungen/README.md). Mitarbeit: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Lizenz
 

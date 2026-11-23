@@ -22,7 +22,7 @@ MCP-Server (Streamable HTTP, zustandslos, nur lesend) auf Vercel mit Förderprog
 - **Node 26.x:** `engines.node` in `package.json` ist `26.x` und hat Vorrang vor der Projekteinstellung in Vercel; Lockfile-Wurzel und CI (`node-version`) ziehen mit (`tests/node-version.test.ts`).
 
 ## Daten pflegen
-Jeder Fakt braucht Quelle (URL, Lesedatum), Prüfdatum und Status; Referenzwerte tragen den Feldpfad des Rechners (`funding.grundRate`), Prozent als Anteil, Monate „JJJJ-MM“. Nichts ohne Quelle eintragen, Unsicheres als `note`. Preise und Marktdaten gehören nicht hinein.
+Jeder Fakt braucht Quelle (URL, Lesedatum), Prüfdatum und Status; Referenzwerte tragen den Feldpfad des Rechners (`funding.grundRate`), Prozent als Anteil, Monate „JJJJ-MM“. Nichts ohne Quelle eintragen, Unsicheres als `note`. Preis- und Marktdaten (auch Energie- und Zinsmärkte) gehören hinein, mit denselben Pflichtfeldern: Quelle mit URL und Lesedatum, Prüfdatum, Status; Sekundärquellen nur mit Status `sekundaerquelle`. Den Abgleich mit den Quellen macht der Agent `source-check` (`.claude/agents/source-check.md`), manuell im Repo; er ändert nichts, Umsetzung läuft über `/chk-sdlc:feature`.
 
 ## Agentenkette
 `/chk-sdlc:feature <Beschreibung>` führt von der Anforderung bis zum PR; die Kette kommt aus dem Plugin `chk-sdlc` (Repo `chkania/claude-chk-sdlc`, aktiviert in `.claude/settings.json`). Projektspezifisch: Profil `.claude/feature-profile.md`, Prüfliste `.claude/requirements-checklist.md`, Laufbuch `.claude/feature-log.md`. `/chk-sdlc:retro` wertet das Laufbuch aus.
