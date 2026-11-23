@@ -1,5 +1,5 @@
 import { defineFacts } from '../facts.js';
-import { BEG_EM_RICHTLINIE, KFW_358_359_MERKBLATT, KFW_358_359_SEITE } from './sources.js';
+import { BEG_EM_RICHTLINIE, KFW_358_359_MERKBLATT, KFW_358_359_MERKBLATT_2026_11_23, KFW_358_359_SEITE } from './sources.js';
 
 /** KfW 358/359 (Ergänzungskredit). */
 export const kfw358359 = defineFacts([
@@ -35,5 +35,17 @@ export const kfw358359 = defineFacts([
     status: 'bestaetigt',
     checkedAt: '2026-11-18',
     sources: [KFW_358_359_MERKBLATT],
+  },
+  {
+    id: 'kfw358-359-laufzeit',
+    topic: 'kredit-kfw-358-359',
+    title: 'KfW 358/359: Laufzeit, tilgungsfreie Anlaufjahre und Zinsbindung',
+    summary:
+      'Mindestlaufzeit 4 Jahre. Laufzeitvarianten: bis 5 Jahre mit einem Tilgungsfreijahr; bis 10 Jahre mit Tilgung in einer Summe am Laufzeitende; bis 10 Jahre mit 1–2 Tilgungsfreijahren; bis 25 Jahre mit 1–3 Tilgungsfreijahren; bis 35 Jahre mit 1–5 Tilgungsfreijahren. Zinsbindung für die gesamte Laufzeit bei den Varianten bis 10 Jahre, bei den Varianten bis 25 und bis 35 Jahre für die ersten 10 Jahre. Rechnerfelder: financing.kfwTermYears (Laufzeit), financing.kfwGraceYears (Tilgungsfreijahre), financing.kfwFixYears (Zinsbindung).',
+    refs: {},
+    validFrom: '2026-09-24',
+    status: 'bestaetigt',
+    checkedAt: '2026-11-23',
+    sources: [KFW_358_359_MERKBLATT_2026_11_23],
   },
 ]);

@@ -43,5 +43,8 @@ export const BASE_KEYS = [
 /** Die fünf Rechtswerte aus F2.6. */
 export const NEW_KEYS = ['general.vat', 'heatPump.feedInCt', 'heatPump.smartMeterFee', 'prices.bioEnabled', 'prices.bioSteps'];
 
+/** Der Feldpfad aus F2.10 (Bewilligungszeitraum der KfW 458). */
+export const F2_10_KEYS = ['funding.approvalMonths'];
+
 /** Erwartete Menge aller Feldpfade, sortiert. */
-export const EXPECTED_KEYS = [...BASE_KEYS, ...NEW_KEYS].sort();
+export const EXPECTED_KEYS = [...BASE_KEYS, ...F2_10_KEYS, ...NEW_KEYS].sort();

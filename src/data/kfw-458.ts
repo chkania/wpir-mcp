@@ -1,5 +1,5 @@
 import { defineFacts } from '../facts.js';
-import { BEG_EM_RICHTLINIE, KFW_458_INFOBLATT, KFW_458_MERKBLATT } from './sources.js';
+import { BEG_EM_RICHTLINIE, KFW_458_INFOBLATT, KFW_458_MERKBLATT, KFW_458_MERKBLATT_2026_11_23 } from './sources.js';
 
 /** KfW 458 (Heizungsförderung für Privatpersonen). Reference values are the ones the calculator (wpir) uses. */
 export const kfw458 = defineFacts([
@@ -91,5 +91,17 @@ export const kfw458 = defineFacts([
     checkedAt: '2026-11-18',
     sources: [BEG_EM_RICHTLINIE, KFW_458_INFOBLATT],
     note: 'Ob die Degression nach 2028 weiterläuft, ist offen; angenommen wird: ja, ohne Ende.',
+  },
+  {
+    id: 'kfw458-bewilligungszeitraum',
+    topic: 'foerderung-kfw-458',
+    title: 'KfW 458: Bewilligungszeitraum',
+    summary:
+      'Das Vorhaben muss innerhalb von 36 Monaten ab Zusage der KfW vollständig abgeschlossen sein (Bewilligungszeitraum). Die Nachweise sind innerhalb von sechs Monaten nach Abschluss des Vorhabens (Datum der letzten Rechnung) einzureichen, spätestens sechs Monate nach Ablauf des Bewilligungszeitraums. Sonst verfällt der Zuschuss.',
+    refs: { 'funding.approvalMonths': 36 },
+    status: 'bestaetigt',
+    checkedAt: '2026-11-23',
+    sources: [KFW_458_MERKBLATT_2026_11_23],
+    note: 'Bezugspunkt ist die Zusage der KfW, nicht das Antragsjahr. Das weicht von der Rechner-Annahme A10 im Repo wpir ab (Dreijahresfrist für die Inbetriebnahme nach dem Antragsjahr).',
   },
 ]);
